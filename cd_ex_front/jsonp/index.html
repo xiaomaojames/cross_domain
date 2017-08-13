@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+           user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>没错，你没有看错，这是jsonp的演示页面</h1>
+<button id="wbx">我不信</button>
+<button id="d_button">信了吧</button>
+<button id="wrx">我任性</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script id="jssrc" src="cr.js"></script>
+<script>
+    function tuantuan(data) {
+        $("body").append(data);
+        $("body").append("<br/>");
+    }
+    $("#d_button").click(function () {
+
+        var script = document.createElement("script");
+        script.src = "http://localhost:3003/jsonp";
+        document.body.appendChild(script);
+    });
+
+
+    $("#wbx").click(function () {
+        $.ajax({url: "http://localhost:3003/jsonp", type: 'get'})
+
+    });
+
+    $("#wrx").click(function () {
+        $.ajax({
+            url: "http://localhost:3005/api1", type: 'get', success: function (data) {
+                $("body").append(data + "<br/>");
+            }
+        })
+
+    });
+</script>
+</html>
