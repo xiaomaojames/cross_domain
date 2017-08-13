@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<h1>通过代理的方式</h1>
+<button id="zj">直接请求3004</button>
+<button id="tw">替我请求3004</button>
+
+<script>
+$("#zj").click(function () {
+    $.ajax({url:"http://localhost:3004/api1",error:function (data) {
+        alert("挂了吧");
+    }})
+
+});
+$("#tw").click(function () {
+    $.ajax({url:"http://localhost:3003/help_request_3004",success:function (data) {
+        $("body").append(data+"<br/>");
+    }})
+})
+</script>
+</body>
+</html>
